@@ -7,10 +7,11 @@ function safeId() {
     );
 }
 
-export default function ExpenseForm({ onAdd }) {
+export default function ExpenseForm({ onAdd, categories }) {
     const [form, setForm] = useState({
         date: new Date().toISOString().slice(0, 10),
         amount: '',
+        category: categories?.[0],
         note: '',
     });
 
@@ -28,6 +29,7 @@ export default function ExpenseForm({ onAdd }) {
             id: safeId(),
             date: form.date,
             amount: Number(form.amount),
+            category: form.category,
             note: form.note.trim(),
         });
         setForm(prev => ({ ...prev, amount: '', note: '' }));
@@ -50,6 +52,17 @@ export default function ExpenseForm({ onAdd }) {
                 step="0.01"
                 min="0"
             />
+            <select
+                name="category"
+                value={form.category}
+                onChange={handleChange}
+            >
+                {categories.map(c => (
+                    <option key={c} value={c}>
+                        {c}
+                    </option>
+                ))}
+            </select>
             <input
                 type="text"
                 name="note"

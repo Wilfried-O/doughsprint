@@ -13,12 +13,14 @@
     margin: 2rem auto;
     padding: 0 1rem;
 }
+
 .header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
+
 .card {
     background: color-mix(in oklab, CanvasText 10%, Canvas 90%);
     padding: 1rem;
@@ -26,22 +28,26 @@
     border: 1px solid color-mix(in oklab, CanvasText 12%, Canvas 88%);
     margin-bottom: 1rem;
 }
+
 .form {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
+
 .form input,
 .form select {
     padding: 0.5rem 0.6rem;
     border-radius: 8px;
     border: 1px solid #0002;
 }
+
 .list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .row {
     display: flex;
     justify-content: space-between;
@@ -49,6 +55,7 @@
     padding: 0.75rem 0;
     border-bottom: 1px solid #0002;
 }
+
 .btn {
     padding: 0.5rem 0.8rem;
     border-radius: 8px;
@@ -56,16 +63,26 @@
     background: #fafafa;
     cursor: pointer;
 }
+
 .btn.danger {
     background: #ffefef;
 }
+
 .muted {
     color: #666;
     font-size: 0.95rem;
 }
+
 .strong {
     font-weight: 600;
 }
+
 .note {
     margin-top: 0.25rem;
+}
+
+.filter select {
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    border: 1px solid #0002;
 }
