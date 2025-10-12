@@ -5,18 +5,18 @@ import ExpenseList from './components/ExpenseList';
 import CategoryFilter from './components/CategoryFilter';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { downloadCSVFromExpenses } from './utils/csv';
+import { fmtMoneyCAD, toSlug } from './utils/formatters';
+import { timestampForFilename } from './utils/date';
+import {
+    APP_NAME,
+    CATEGORIES,
+    FILTER_ALL,
+    STORAGE_KEYS,
+} from './utils/constants';
 
 export default function App() {
-    const [expenses, setExpenses] = useLocalStorage('doughsprint:expenses', []);
-    const CATEGORIES = [
-        'Food',
-        'Transport',
-        'Housing',
-        'Entertainment',
-        'Health',
-        'Other',
-    ];
-    const [filteredCateg, setFilteredCateg] = useState('All');
+    const [expenses, setExpenses] = useLocalStorage(STORAGE_KEYS.expenses, []);
+    const [filteredCateg, setFilteredCateg] = useState(FILTER_ALL);
 
     function addExpense(expense) {
         setExpenses(prev => [expense, ...prev]);
@@ -26,57 +26,42 @@ export default function App() {
     }
 
     const filteredExpenses = useMemo(() => {
-        if (filteredCateg === 'All') return expenses;
+        if (filteredCateg === FILTER_ALL) return expenses;
         return expenses.filter(e => e.category === filteredCateg);
     }, [expenses, filteredCateg]);
 
-    // Total matches the filtered list
     const total = useMemo(
         () => filteredExpenses.reduce((sum, e) => sum + Number(e.amount), 0),
         [filteredExpenses]
     );
 
-    // Export current (filtered) view
     function handleExport() {
         if (filteredExpenses.length === 0) return;
-        const pad = n => String(n).padStart(2, '0');
-        const now = new Date();
-        const name =
-            `doughsprint-` +
-            `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-` +
-            `${pad(now.getHours())}${pad(now.getMinutes())}.csv`;
+        const categ =
+            filteredCateg === FILTER_ALL ? 'all' : toSlug(filteredCateg);
+        const name = `doughsprint-${categ}-${timestampForFilename()}.csv`;
         downloadCSVFromExpenses(filteredExpenses, name);
     }
 
     return (
         <div className="container">
             <header className="header">
-                <h1>DoughSprint 💸</h1>
-                <div
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '.5rem',
-                    }}
-                >
+                <h1>{APP_NAME} 💸</h1>
+                <div className="hstack gap-050">
                     <div className="muted">
-                        {`Total: `}
-                        <strong>
-                            {new Intl.NumberFormat('en-CA', {
-                                style: 'currency',
-                                currency: 'CAD',
-                            }).format(total)}
-                        </strong>
+                        Total: <strong>{fmtMoneyCAD(total)}</strong>
                     </div>
                     <button
                         className="btn"
                         onClick={handleExport}
                         disabled={filteredExpenses.length === 0}
+                        aria-label={`Export ${filteredExpenses.length} item(s) from "${filteredCateg}" as CSV`}
                         title={
                             filteredExpenses.length
-                                ? 'Export the currently filtered expenses'
+                                ? `Export ${filteredExpenses.length} item(s) from "${filteredCateg}"`
                                 : 'Nothing to export yet'
                         }
+                        type="button"
                     >
                         Export CSV
                     </button>
@@ -88,12 +73,9 @@ export default function App() {
                 <ExpenseForm onAdd={addExpense} categories={CATEGORIES} />
             </section>
 
-            <section
-                className="card"
-                style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}
-            >
+            <section className="card hstack gap-075">
                 <CategoryFilter
-                    categories={['All', ...CATEGORIES]}
+                    categories={[FILTER_ALL, ...CATEGORIES]}
                     value={filteredCateg}
                     onChange={setFilteredCateg}
                 />

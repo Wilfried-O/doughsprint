@@ -1,10 +1,16 @@
 export default function CategoryFilter({ categories, value, onChange }) {
+    const id = 'category-filter';
+
     return (
-        <div className="filter">
-            <label className="muted" style={{ marginRight: 8 }}>
+        <div className="filter hstack gap-050">
+            <label className="muted mr-8" htmlFor={id}>
                 Category:
             </label>
-            <select value={value} onChange={e => onChange(e.target.value)}>
+            <select
+                id={id}
+                value={value}
+                onChange={e => onChange(e.target.value)}
+            >
                 {categories.map(c => (
                     <option key={c} value={c}>
                         {c}

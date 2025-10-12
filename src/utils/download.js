@@ -1,10 +1,10 @@
-function downloadBlob(blob, filename) {
+export function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     try {
         const a = document.createElement('a');
         a.href = url;
         a.download = filename;
-        a.click(); // we don't append to DOM; modern browsers are fine
+        a.click(); // we don't append to DOM; modern browsers handle this well
     } finally {
         URL.revokeObjectURL(url); // always free the object URL (even if click throws)
     }

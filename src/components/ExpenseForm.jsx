@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { todayLocalISO } from '../utils/date';
 
 function safeId() {
     return (
@@ -9,7 +10,7 @@ function safeId() {
 
 export default function ExpenseForm({ onAdd, categories }) {
     const [form, setForm] = useState({
-        date: new Date().toISOString().slice(0, 10),
+        date: todayLocalISO(),
         amount: '',
         category: categories?.[0],
         note: '',
