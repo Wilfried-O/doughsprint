@@ -1,4 +1,3 @@
-// MonthlyBarChart.jsx
 import { useMemo } from 'react';
 import {
     BarChart,

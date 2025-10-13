@@ -1,5 +1,4 @@
-// App.jsx
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
@@ -22,6 +21,13 @@ export default function App() {
     const [filteredCateg, setFilteredCateg] = useState(FILTER_ALL);
 
     const [showCharts, setShowCharts] = useState(true);
+
+    // If there are no expenses, hide charts automatically.
+    useEffect(() => {
+        if (expenses.length === 0 && showCharts) {
+            setShowCharts(false);
+        }
+    }, [expenses, showCharts]);
 
     function addExpense(expense) {
         setExpenses(prev => [expense, ...prev]);
@@ -66,7 +72,7 @@ export default function App() {
                         aria-label={`Export ${filteredExpenses.length} item(s) from "${filteredCateg}" as CSV`}
                         title={
                             hasExpenses
-                                ? `Export ${filteredExpenses.length} item(s) from "${filteredCateg}"`
+                                ? `Export ${filteredExpenses.length} item${filteredExpenses.length > 1 ? 's' : ''} from "${filteredCateg}"`
                                 : 'Nothing to export yet'
                         }
                         type="button"

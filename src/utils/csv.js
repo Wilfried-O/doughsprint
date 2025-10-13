@@ -1,4 +1,3 @@
-// src/utils/csv.js
 import { downloadText } from './download';
 import { CSV_HEADERS } from './constants';
 
@@ -19,7 +18,8 @@ export function downloadCSVFromExpenses(
     // prefix with a single quote so spreadsheet apps treat it as text.
     const sanitizeForCSV = s => (/^[=+\-@]/.test(s) ? `'${s}` : s);
 
-    const escapeCSV = v => `"${sanitizeForCSV(v).replaceAll('"', '""')}"`;
+    const escapeCSV = v =>
+        `"${sanitizeForCSV(String(v)).replaceAll('"', '""')}"`;
 
     const headerLine = headers.join(delimiter);
     const bodyLines = expenses.map(e =>
