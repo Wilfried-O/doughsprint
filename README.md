@@ -1,20 +1,23 @@
 # DoughSprint 💸
 
-Track your expenses, sprint to savings — a clean, single-page React expense tracker.
+Track your expenses, to manage your dough (money), and sprint to savings — a small expense tracker.
+
+![App Preview - Expenses](preview-app-expenses.png)
+![App Preview - Charts](preview-app-charts.png)
 
 ## 📚 Overview
 
 **DoughSprint** is a lightweight expense tracker built with **React.js**.  
-It focuses on the essentials: adding expenses, filtering by category, visualizing trends, and exporting your data.
+It focuses on the essentials: adding expenses, filtering by category, visualizing spending, and exporting your data.
 
 ---
 
 ## ✨ Features
 
-- **Add / Delete Expenses** – Quick form to capture date, amount, category, and a note.
-- **Monthly & Yearly Breakdown** – Clean charts powered by **Recharts** for trends over time.
+- **Add / Delete Expenses** – Simple form to capture date, amount, category, and a note.
+- **Monthly & Yearly Breakdown** – Clean charts powered by **Recharts** for visualizing your spending over time.
 - **Filter by Category** – Focus on what matters.
-- **Export to CSV** – One click to download your current dataset.
+- **Export to CSV** – One click to download your current view.
 - **Local Persistence** – Saves to `localStorage` so your data survives browsing sessions.
 
 ---
@@ -63,16 +66,22 @@ It focuses on the essentials: adding expenses, filtering by category, visualizin
 
 ## 📋 Project Status
 
-- ✅ **Initial Cleanup:** Removed default React boilerplate (logos, tests, `reportWebVitals.js`, etc.)
-- ✅ **Tooling:** Added ESLint and Prettier
+- ✅ **Feature complete:**
+    - Add expense, list expenses, and delete expenses
+    - Category filter
+    - CSV export
+    - Monthly/Yearly charts (Recharts)
+
 - ⚙️ **Work in Progress:**
-    - Expense form, list, and delete actions
+    - Refactoring and cleanup (add CSS Modules for components)
+    - Improve styling to make the look more polished
 
 ### 🧭 Next Steps
 
-- Category filter
-- Monthly/Yearly charts (Recharts)
-- CSV export
+- Add dark mode
+- Support US currency ($USD)
+- Support French language
+- Add logo and icons
 
 ---
 
