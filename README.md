@@ -2,13 +2,22 @@
 
 Track your expenses, to manage your dough (money), and sprint to savings — a small expense tracker.
 
-![App Preview - Expenses](preview-app-expenses.png)
-![App Preview - Charts](preview-app-charts.png)
+|     ![App Preview](preview-app-expenses.png)     |
+| :----------------------------------------------: |
+| _Image 1 — list of expenses with charts hidden._ |
+
+|      ![App Preview](preview-app-charts.png)      |
+| :----------------------------------------------: |
+| _Image 2 — charts shown above list of expenses._ |
+
+> Note: This is not the final version of the UI.
 
 ## 📚 Overview
 
 **DoughSprint** is a lightweight expense tracker built with **React.js**.  
 It focuses on the essentials: adding expenses, filtering by category, visualizing spending, and exporting your data.
+
+The project is deployed to a Vercel website [(Click here)](https://doughsprint.vercel.app/) for you to test the app right away!
 
 ---
 
@@ -24,7 +33,7 @@ It focuses on the essentials: adding expenses, filtering by category, visualizin
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** React.js v.19
 - **Charts:** Recharts
 - **Styling:** CSS
 - **Data Storage:** localStorage
@@ -74,14 +83,15 @@ It focuses on the essentials: adding expenses, filtering by category, visualizin
 
 - ⚙️ **Work in Progress:**
     - Refactoring and cleanup (add CSS Modules for components)
-    - Improve styling to make the look more polished
+    - UI improvement: add logo/icons, and polish the look of the app
 
 ### 🧭 Next Steps
 
 - Add dark mode
+- Consider accessibility (aria)
+- Add responsive design (mobile-friendly)
 - Support US currency ($USD)
 - Support French language
-- Add logo and icons
 
 ---
 
